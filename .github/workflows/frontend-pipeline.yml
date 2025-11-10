@@ -1,0 +1,28 @@
+name: "Trigger MuleSoft Parent Deployment"
+
+on:
+  push:
+    branches:
+      - main    
+
+jobs:
+  trigger-parent:
+    name: "Trigger Parent MuleSoft Pipeline"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Parent Deployment Pipeline
+        run: |
+          echo "Triggering parent MuleSoft CI/CD workflow for ${{ github.repository }}"
+
+          curl -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.PARENT_REPO_TOKEN }}" \
+          https://api.github.com/repos/akshtshrma/cc-deployment-pipeline/dispatches \
+          -d '{
+            "event_type": "trigger-mule-deploy",
+            "client_payload": {
+              "repo": "${{ github.repository }}",
+              "app_name": "cc-pipeline-frontend"
+            }
+          }'
