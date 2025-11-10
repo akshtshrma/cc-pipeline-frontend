@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2e8a397c-5df9-40e6-9697-d5a04e50cbee" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="cc-pipeline-frontendFlow" doc:id="323a3724-bc45-4ee3-a54a-525daa69918b" >
+		<http:listener doc:name="Listener" doc:id="28d8f8ce-c78e-41a0-95a6-b6132d161c1e" config-ref="HTTP_Listener_config" path="/frontend"/>
+		<set-payload value='#[output application/json&#10;---&#10;{&#10;	message : "This is the frontend app"&#10;}]' doc:name="Set Payload" doc:id="316bcb8a-b3a9-432f-a0aa-cc554bccb982" />
+	</flow>
+</mule>
