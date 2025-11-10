@@ -3,7 +3,7 @@ name: "Trigger MuleSoft Parent Deployment"
 on:
   push:
     branches:
-      - main    
+      - main 
 
 jobs:
   trigger-parent:
