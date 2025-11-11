@@ -7,7 +7,7 @@ on:
 
 jobs:
   trigger-mule-deploy:
-    name: "Trigger Parent MuleSoft Pipeline" 
+    name: "Trigger Parent MuleSoft Pipeline"
     runs-on: ubuntu-latest
 
     steps:
